@@ -1,8 +1,8 @@
 # Sending HTTP Headers with cURL
 
-[![Bright Data Promo](https://github.com/luminati-io/LinkedIn-Scraper/raw/main/Proxies%20and%20scrapers%20GitHub%20bonus%20banner.png)](https://brightdata.com/)
+[![Bright Data Promo](https://github.com/luminati-io/LinkedIn-Scraper/raw/main/Proxies%20and%20scrapers%20GitHub%20bonus%20banner.png)](https://brightdata.co.kr/)
 
-This guide will show you how to effectively use HTTP headers with cURL to improve your data collection and server communication capabilities:
+이 가이드는 HTTP 헤더를 cURL과 함께 효과적으로 사용하여 데이터 수집 및 서버 통신 역량을 향상시키는 방법을 안내합니다:
 
 - [Understanding HTTP Headers](#understanding-http-headers)
 - [Getting Started with cURL Headers](#getting-started-with-curl-headers)
@@ -16,21 +16,21 @@ This guide will show you how to effectively use HTTP headers with cURL to improv
 
 ## Understanding HTTP Headers
 
-Hypertext Transfer Protocol (HTTP) functions as a [stateless protocol](https://byjus.com/gate/difference-between-stateless-and-stateful-protocol/) following a client-server architecture where clients issue requests and await server responses. These requests contain important elements like HTTP method, server location, path, query parameters, and headers.
+하이퍼텍스트 전송 프로토콜(HTTP)은 [stateless protocol](https://byjus.com/gate/difference-between-stateless-and-stateful-protocol/)로서 클라이언트가 리クエスト를 발행하고 서버 リスポンス를 기다리는 클라이언트-서버 아키텍처를 따릅니다. 이러한 리クエスト에는 HTTP 메서드, 서버 위치, 경로, 쿼리 파라メータ, 그리고 헤ッダー와 같은 중요한 요소가 포함됩니다.
 
-HTTP headers are essentially key-value pairs that transmit metadata and instructions between clients and servers. They play a crucial role in specifying parameters like content type, caching rules, and authentication methods, ensuring smooth and secure client-server interactions. For [web scraping](https://brightdata.com/blog/how-tos/what-is-web-scraping) operations, HTTP headers enable you to tailor requests by simulating different user agents, managing content negotiation, and handling authentication according to website requirements and protocols.
+HTTP 헤ッダー는 본질적으로 클라이언트와 서버 간에 메타데이터와 지침을 전달하는 키-값 쌍입니다. 이는 콘텐츠 유형, 캐싱 규칙, 認証 방법과 같은 파라メータ를 지정하는 데 중요한 역할을 하며, 원활하고 안전한 클라이언트-서버 상호작용을 보장합니다. [web scraping](https://brightdata.co.kr/blog/how-tos/what-is-web-scraping) 작업에서 HTTP 헤ッダー는 다양한 user agent를 시뮬레이션하고, 콘텐츠 네고시에이션을 관리하며, 웹사이트 요구사항 및 프로토콜에 따라 認証을 처리함으로써 리クエスト를 맞춤화할 수 있게 해줍니다.
 
-Common applications of HTTP headers in web scraping include altering the user-agent (UA), specifying response formats, performing conditional requests, and authenticating with application programming interfaces (APIs).
+Webスクレイピング에서 HTTP 헤ッダー의 일반적인 활용 사례로는 user-agent(UA) 변경, リスポンス 형식 지정, 조건부 리クエスト 수행, 애플리케이션 프로그래밍 인터페이스(API)로 認証 수행 등이 있습니다.
 
 ## Getting Started with cURL Headers
 
-Before proceeding with this tutorial, ensure curl is installed on your system by executing this command in your terminal:
+이 튜토리얼을 진행하기 전에, 터미널에서 다음 명령을 실행하여 시스템에 curl이 설치되어 있는지 확인하십시오:
 
 ```sh
 curl --version
 ```
 
-If installed correctly, you'll receive version information like this:
+올바르게 설치되어 있다면 다음과 같은 버전 정보를 받게 됩니다:
 
 ```
 curl 7.55.1 (Windows) libcurl/7.55.1 WinSSL
@@ -39,17 +39,17 @@ Protocols: dict file ftp ftps http https imap imaps pop3 pop3s smtp smtps telnet
 Features: AsynchDNS IPv6 Largefile SSPI Kerberos SPNEGO NTLM SSL
 ```
 
-If you encounter errors such as `curl is not recognized as an internal or external command, operable program or batch file` or `command not found`, you'll need to [install curl](https://curl.se/download.html).
+`curl is not recognized as an internal or external command, operable program or batch file` 또는 `command not found`와 같은 오류가 발생하면, [install curl](https://curl.se/download.html)해야 합니다.
 
-You'll also need a service for examining headers, such as [httpbin.org](http://httpbin.org/), which provides a straightforward HTTP request and response service.
+또한 헤ッダー 확인을 위한 서비스가 필요합니다. 예를 들어 [httpbin.org](http://httpbin.org/)는 간단한 HTTP 리クエスト 및 リスポンス 서비스를 제공합니다.
 
-For those familiar with curl, you'll recognize that its basic syntax follows this pattern:
+curl에 익숙하신 분이라면, 기본 구문이 다음 패턴을 따른다는 것을 알고 계실 것입니다:
 
 ```sh
 curl [options] [url]
 ```
 
-This means that to retrieve content from `mywebpage.com`, you would run:
+즉, `mywebpage.com`에서 콘텐츠를 가져오려면 다음을 실행합니다:
 
 ```sh
 curl www.mywebpage.com
@@ -57,13 +57,13 @@ curl www.mywebpage.com
 
 ## Viewing Default cURL Headers
 
-To examine the headers curl sends by default using httpbin.org, execute this command:
+httpbin.org를 사용하여 curl이 기본적으로 보내는 헤ッダー를 확인하려면 다음 명령을 실행하십시오:
 
 ```sh
 curl http://httpbin.org/headers
 ```
 
-The response will display the headers sent:
+リスポンス에는 전송된 헤ッダー가 표시됩니다:
 
 ```json
 {
@@ -75,31 +75,31 @@ The response will display the headers sent:
   }
 ```
 
-The `Accept`, `Host`, and `User-Agent` headers are included by default in curl requests.
+`Accept`, `Host`, `User-Agent` 헤ッダー는 curl リクエスト에 기본으로 포함됩니다.
 
-The `Accept` header informs the server about media types the client can process. It communicates which content types the client will accept, facilitating content negotiation between client and server.
+`Accept` 헤ッダー는 클라이언트가 처리할 수 있는 미디어 유형을 서버에 알립니다. 클라이언트가 수용할 콘텐츠 유형을 전달하여 클라이언트와 서버 간 콘텐츠 네고시에이션을 용이하게 합니다.
 
-An `Accept` header indicating the client prefers JSON looks like:
+클라이언트가 JSON을 선호함을 나타내는 `Accept` 헤ッダー는 다음과 같습니다:
 
 ```
 Accept: application/json
 ```
 
-The `User-Agent` field contains your client information, which in this case is the curl application with its version number (matching your installed version).
+`User-Agent` 필드에는 클라이언트 정보가 포함되며, 이 경우 버전 번호가 포함된 curl 애플리케이션(설치된 버전과 일치)입니다.
 
-The `Host` header identifies the specific web domain (the host) and port number for the HTTP request. When no port is specified, default ports are assumed (port 80 for HTTP and port 443 for HTTPS).
+`Host` 헤ッダー는 HTTP 리クエ스트의 특정 웹 도메인(호스트)과 포트 번호를 식별합니다. 포트가 지정되지 않으면 기본 포트가 가정됩니다(HTTP는 포트 80, HTTPS는 포트 443).
 
-`X-Amzn-Trace-Id` is not a default curl header but indicates your request was routed through an Amazon Web Services (AWS) service, like an AWS load balancer, and can be used for HTTP request tracing.
+`X-Amzn-Trace-Id`는 기본 curl 헤ッダー가 아니라, 리クエ스트가 AWS 로드 밸런서와 같은 Amazon Web Services(AWS) 서비스를 통해 라우팅되었음을 나타내며 HTTP 리クエ스트 트레이싱에 사용할 수 있습니다.
 
-To confirm which headers curl sends by default, you can use verbose mode with either the `-v` or `--verbose` flag, which shows detailed request and response information, including headers.
+curl이 기본적으로 보내는 헤ッダー가 무엇인지 확인하려면 `-v` 또는 `--verbose` 플래그로 verbose 모드를 사용할 수 있습니다. 이 모드는 헤ッダー सहित 상세한 리クエ스트 및 リスポンス 정보를 표시합니다.
 
-Run this command to see default curl headers:
+기본 curl 헤ッダー를 보려면 다음 명령을 실행하십시오:
 
 ```sh
 curl -v http://httpbin.org/headers
 ```
 
-Your output will resemble:
+출력은 다음과 유사합니다:
 
 ```
 - Trying 50.16.63.240...
@@ -130,26 +130,26 @@ Your output will resemble:
 * Connection #0 to host httpbin.org left intact
 ```
 
-Lines beginning with a greater-than sign (>) show what your client (curl) sent to the endpoint, confirming the following headers were transmitted:
+부등호(>)로 시작하는 줄은 클라이언트(curl)가 エンドポイント로 전송한 내용을 보여주며, 다음 헤ッダー가 전송되었음을 확인합니다:
 
-- `GET` (HTTP method) to the endpoint/headers
-- `Host` with value `httpbin.org`
-- `User-Agent` with value `curl/7.55.1`
-- `Accept` with value `*/*`
+- エンドポイント/headers로의 `GET`(HTTP 메서드)
+- 값이 `httpbin.org`인 `Host`
+- 값이 `curl/7.55.1`인 `User-Agent`
+- 값이 `*/*`인 `Accept`
 
-In the output, lines starting with a less-than sign (<), such as `< Content-Type: application/json`, reflect the response headers.
+출력에서 `< Content-Type: application/json`과 같이 부등호(<)로 시작하는 줄은 リスポンス 헤ッダー를 반영합니다.
 
 ## Modifying Default Headers with -H
 
-The `-H` or `--header` flag allows you to send custom headers to the server and is useful for testing.
+`-H` 또는 `--header` 플래그는 서버로 커스텀 헤ッダー를 전송할 수 있게 해주며, 테스트에 유용합니다.
 
-For example, to change the `User-Agent` from `curl/7.55.1` to `Your-New-User-Agent`, use:
+예를 들어 `User-Agent`를 `curl/7.55.1`에서 `Your-New-User-Agent`로 변경하려면 다음을 사용하십시오:
 
 ```sh
 curl -H "User-Agent: Your-New-User-Agent" http://httpbin.org/headers
 ```
 
-The response will show:
+リスポンス에는 다음이 표시됩니다:
 
 ```json
 {
@@ -162,13 +162,13 @@ The response will show:
 }
 ```
 
-If you want to modify the `Accept` header from `*/*` (which accepts any content type) to `application/json` (which only accepts JSON content), run:
+`Accept` 헤ッダー를 `*/*`(어떤 콘텐츠 유형이든 수용)에서 `application/json`(JSON 콘텐츠만 수용)으로 수정하려면 다음을 실행하십시오:
 
 ```sh
 curl --header "Accept: application/json" http://httpbin.org/headers
 ```
 
-The output will be:
+출력은 다음과 같습니다:
 
 ```json
 {
@@ -183,9 +183,9 @@ The output will be:
 
 > **Note:**
 >
-> In this example, `--header` was used instead of `-H`. These flags are equivalent and perform the same function.
+> 이 예에서는 `-H` 대신 `--header`를 사용했습니다. 이 플래그들은 동등하며 동일한 기능을 수행합니다.
 
-Since curl version 7.55.0, you can also use a file containing your headers. If your header file is named `header_file`, you can use:
+curl 7.55.0 버전부터는 헤ッダー가 포함된 파일을 사용할 수도 있습니다. 헤ッダー 파일 이름이 `header_file`인 경우 다음을 사용할 수 있습니다:
 
 ```sh
 curl -H @header_file
@@ -193,15 +193,15 @@ curl -H @header_file
 
 ## Creating Custom Headers
 
-Custom headers are developer-defined fields that provide additional information beyond standard HTTP headers.
+커스텀 헤ッダー는 표준 HTTP 헤ッダー 외에 추가 정보를 제공하는 개발자 정의 필드입니다.
 
-To send a custom header with curl, use the `-H` flag. For instance, to send a custom header named `My-Custom-Header` with value `Value of custom header`, execute:
+curl로 커스텀 헤ッダー를 전송하려면 `-H` 플래그를 사용하십시오. 예를 들어 값이 `Value of custom header`인 `My-Custom-Header`라는 커스텀 헤ッダー를 전송하려면 다음을 실행합니다:
 
 ```sh
 curl -H "My-Custom-Header: Value of custom header" http://httpbin.org/headers
 ```
 
-The response will be:
+リスポンス는 다음과 같습니다:
 
 ```json
 {
@@ -217,17 +217,17 @@ The response will be:
 
 ## Working with Empty Headers
 
-Sometimes sending empty headers is necessary, such as when complying with specific API requirements that demand certain headers even without content. For example, the [HTTP Strict Transport Security (HSTS) header](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Strict-Transport-Security) enforces secure HTTPS connections on websites. While this header typically includes directives about HSTS duration and behavior, sending it with an empty value ensures immediate HSTS enforcement.
+때로는 빈 헤ッダー 전송이 필요합니다. 예를 들어 특정 API 요구사항을 준수하기 위해 콘텐츠가 없더라도 특정 헤ッダー가 필요할 수 있습니다. 예를 들어 [HTTP Strict Transport Security (HSTS) header](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Strict-Transport-Security)는 웹사이트에서 안전한 HTTPS 연결을 강제합니다. 이 헤ッダー에는 일반적으로 HSTS 지속 기간과 동작에 대한 지시문이 포함되지만, 빈 값으로 전송하면 즉시 HSTS 강제를 보장합니다.
 
-Empty headers can also be used to clear previously set headers. To reset or clear a header that was set by default, sending an empty header can effectively remove its value.
+빈 헤ッダー는 이전에 설정된 헤ッダー 값을 지우는 데도 사용할 수 있습니다. 기본으로 설정된 헤ッダー를 리셋 또는 클리어하려면, 빈 헤ッダー 전송으로 해당 값을 효과적으로 제거할 수 있습니다.
 
-To send an empty header with curl, specify the header name followed by a semicolon to indicate an empty value. This command shows how to send an empty custom header called `My-Custom-Header`:
+curl로 빈 헤ッダー를 전송하려면, 빈 값을 나타내기 위해 헤ッダー 이름 뒤에 세미콜론을 지정하십시오. 다음 명령은 `My-Custom-Header`라는 빈 커스텀 헤ッダー를 전송하는 방법을 보여줍니다:
 
 ```sh
 curl -H "My-Custom-Header;" http://httpbin.org/headers
 ```
 
-The output shows `My-Custom-Header` with an empty value:
+출력에는 `My-Custom-Header`가 빈 값으로 표시됩니다:
 
 ```json
 {
@@ -243,15 +243,15 @@ The output shows `My-Custom-Header` with an empty value:
 
 ## Deleting Headers
 
-To completely remove a header with curl, specify the header name followed by a colon with no subsequent value.
+curl로 헤ッダー를 완전히 제거하려면, 헤ッダー 이름 뒤에 콜론을 붙이고 그 뒤에 값을 지정하지 않으면 됩니다.
 
-For example, to eliminate the default `User-Agent` header, use:
+예를 들어 기본 `User-Agent` 헤ッダー를 제거하려면 다음을 사용하십시오:
 
 ```sh
 curl -H "User-Agent:" http://httpbin.org/headers
 ```
 
-The response will not contain the `User-Agent` header, confirming it was removed:
+リスポンス에는 `User-Agent` 헤ッダー가 포함되지 않으며, 제거되었음을 확인할 수 있습니다:
 
 ```json
 {
@@ -265,15 +265,15 @@ The response will not contain the `User-Agent` header, confirming it was removed
 
 ## Sending Multiple Headers at Once
 
-So far, we've examined examples with single headers, but curl supports sending multiple headers simultaneously. Simply include multiple `-H` flags in your command.
+지금까지는 단일 헤ッダー 예시를 살펴보았지만, curl은 여러 헤ッダー의 동시 전송을 지원합니다. 명령에 여러 개의 `-H` 플래그를 포함하기만 하면 됩니다.
 
-For instance, to send two headers (`Custom-Header-1` and `Custom-Header-2`) with values `one` and `two` respectively, run:
+예를 들어 값이 각각 `one`, `two`인 두 헤ッダー(`Custom-Header-1`, `Custom-Header-2`)를 전송하려면 다음을 실행하십시오:
 
 ```sh
 curl -H "Custom-Header-1: one" -H "Custom-Header-2: two" http://httpbin.org/headers
 ```
 
-The output will show:
+출력은 다음과 같습니다:
 
 ```json
 {
@@ -290,8 +290,8 @@ The output will show:
 
 ## Summary
 
-This article has covered the fundamentals of HTTP headers and demonstrated how to effectively manage them using curl.
+이 문서에서는 HTTP 헤ッダー의 기초를 다루고 curl을 사용하여 이를 효과적으로 관리하는 방법을 시연했습니다.
 
-For a comprehensive web scraping solution, consider Bright Data. They offer specialized tools and services including [proxy services](https://brightdata.com/proxy-types) that enhance anonymity and prevent IP blocking, as well as [Web Unlocker](https://brightdata.com/products/web-unlocker) to help access geographically restricted content without CAPTCHAs.
+포괄적인 Webスクレイピング 솔루션을 원하신다면 Bright Data를 고려해 보십시오. Bright Data는 익명성을 강화하고 IP 차단을 방지하는 [proxy services](https://brightdata.co.kr/proxy-types)뿐만 아니라, CAPTCHA 없이 지리적으로 제한된 콘텐츠에 접근할 수 있도록 돕는 [Web Unlocker](https://brightdata.co.kr/products/web-unlocker) 등 전문 도구와 서비스를 제공합니다.
 
-Begin your free trial today!
+오늘 무료 체험을 시작해 보십시오!
