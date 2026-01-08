@@ -1,6 +1,6 @@
 # Sending HTTP Headers with cURL
 
-[![Bright Data Promo](https://github.com/luminati-io/LinkedIn-Scraper/raw/main/Proxies%20and%20scrapers%20GitHub%20bonus%20banner.png)](https://brightdata.co.kr/)
+[![Bright Data Promo](https://github.com/bright-kr/LinkedIn-Scraper/raw/main/Proxies%20and%20scrapers%20GitHub%20bonus%20banner.png)](https://brightdata.co.kr/)
 
 이 가이드는 HTTP 헤더를 cURL과 함께 효과적으로 사용하여 데이터 수집 및 서버 통신 역량을 향상시키는 방법을 안내합니다:
 
