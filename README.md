@@ -18,9 +18,9 @@
 
 하이퍼텍스트 전송 프로토콜(HTTP)은 [stateless protocol](https://byjus.com/gate/difference-between-stateless-and-stateful-protocol/)로서 클라이언트가 리クエスト를 발행하고 서버 リスポンス를 기다리는 클라이언트-서버 아키텍처를 따릅니다. 이러한 리クエスト에는 HTTP 메서드, 서버 위치, 경로, 쿼리 파라メータ, 그리고 헤ッダー와 같은 중요한 요소가 포함됩니다.
 
-HTTP 헤ッダー는 본질적으로 클라이언트와 서버 간에 메타데이터와 지침을 전달하는 키-값 쌍입니다. 이는 콘텐츠 유형, 캐싱 규칙, 認証 방법과 같은 파라メータ를 지정하는 데 중요한 역할을 하며, 원활하고 안전한 클라이언트-서버 상호작용을 보장합니다. [web scraping](https://brightdata.co.kr/blog/how-tos/what-is-web-scraping) 작업에서 HTTP 헤ッダー는 다양한 user agent를 시뮬레이션하고, 콘텐츠 네고시에이션을 관리하며, 웹사이트 요구사항 및 프로토콜에 따라 認証을 처리함으로써 리クエスト를 맞춤화할 수 있게 해줍니다.
+HTTP 헤ッダー는 본질적으로 클라이언트와 서버 간에 메타데이터와 지침을 전달하는 키-값 쌍입니다. 이는 콘텐츠 유형, 캐싱 규칙, 인증 방법과 같은 파라メータ를 지정하는 데 중요한 역할을 하며, 원활하고 안전한 클라이언트-서버 상호작용을 보장합니다. [web scraping](https://brightdata.co.kr/blog/how-tos/what-is-web-scraping) 작업에서 HTTP 헤ッダー는 다양한 user agent를 시뮬레이션하고, 콘텐츠 네고시에이션을 관리하며, 웹사이트 요구사항 및 프로토콜에 따라 인증을 처리함으로써 리クエスト를 맞춤화할 수 있게 해줍니다.
 
-Webスクレイピング에서 HTTP 헤ッダー의 일반적인 활용 사례로는 user-agent(UA) 변경, リスポンス 형식 지정, 조건부 리クエスト 수행, 애플리케이션 프로그래밍 인터페이스(API)로 認証 수행 등이 있습니다.
+Web스크레이핑에서 HTTP 헤ッダー의 일반적인 활용 사례로는 user-agent(UA) 변경, リスポンス 형식 지정, 조건부 리クエスト 수행, 애플리케이션 프로그래밍 인터페이스(API)로 인증 수행 등이 있습니다.
 
 ## Getting Started with cURL Headers
 
@@ -75,7 +75,7 @@ curl http://httpbin.org/headers
   }
 ```
 
-`Accept`, `Host`, `User-Agent` 헤ッダー는 curl リクエスト에 기본으로 포함됩니다.
+`Accept`, `Host`, `User-Agent` 헤ッダー는 curl 요청에 기본으로 포함됩니다.
 
 `Accept` 헤ッダー는 클라이언트가 처리할 수 있는 미디어 유형을 서버에 알립니다. 클라이언트가 수용할 콘텐츠 유형을 전달하여 클라이언트와 서버 간 콘텐츠 네고시에이션을 용이하게 합니다.
 
@@ -130,9 +130,9 @@ curl -v http://httpbin.org/headers
 * Connection #0 to host httpbin.org left intact
 ```
 
-부등호(>)로 시작하는 줄은 클라이언트(curl)가 エンドポイント로 전송한 내용을 보여주며, 다음 헤ッダー가 전송되었음을 확인합니다:
+부등호(>)로 시작하는 줄은 클라이언트(curl)가 엔드포인트로 전송한 내용을 보여주며, 다음 헤ッダー가 전송되었음을 확인합니다:
 
-- エンドポイント/headers로의 `GET`(HTTP 메서드)
+- 엔드포인트/headers로의 `GET`(HTTP 메서드)
 - 값이 `httpbin.org`인 `Host`
 - 값이 `curl/7.55.1`인 `User-Agent`
 - 값이 `*/*`인 `Accept`
@@ -292,6 +292,6 @@ curl -H "Custom-Header-1: one" -H "Custom-Header-2: two" http://httpbin.org/head
 
 이 문서에서는 HTTP 헤ッダー의 기초를 다루고 curl을 사용하여 이를 효과적으로 관리하는 방법을 시연했습니다.
 
-포괄적인 Webスクレイピング 솔루션을 원하신다면 Bright Data를 고려해 보십시오. Bright Data는 익명성을 강화하고 IP 차단을 방지하는 [proxy services](https://brightdata.co.kr/proxy-types)뿐만 아니라, CAPTCHA 없이 지리적으로 제한된 콘텐츠에 접근할 수 있도록 돕는 [Web Unlocker](https://brightdata.co.kr/products/web-unlocker) 등 전문 도구와 서비스를 제공합니다.
+포괄적인 Web스크레이핑 솔루션을 원하신다면 Bright Data를 고려해 보십시오. Bright Data는 익명성을 강화하고 IP 차단을 방지하는 [proxy services](https://brightdata.co.kr/proxy-types)뿐만 아니라, CAPTCHA 없이 지리적으로 제한된 콘텐츠에 접근할 수 있도록 돕는 [Web Unlocker](https://brightdata.co.kr/products/web-unlocker) 등 전문 도구와 서비스를 제공합니다.
 
 오늘 무료 체험을 시작해 보십시오!
